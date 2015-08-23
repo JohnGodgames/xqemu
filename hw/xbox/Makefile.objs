@@ -8,5 +8,5 @@ obj-y += mcpx_apu.o mcpx_aci.o
 obj-y += lpc47m157.o
 obj-y += xid.o
 obj-y += chihiro-usb.o
-
+obj-y += xid.o xid-sdl.o
 obj-y += dsp/
