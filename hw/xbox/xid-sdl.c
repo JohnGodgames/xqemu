@@ -264,8 +264,8 @@ static void update_input(USBXIDState *s)
     /* Analog sticks */
     s->in_state.sThumbLX = SDL_JoystickGetAxis(s->sdl_joystick, 0);
     s->in_state.sThumbLY = -SDL_JoystickGetAxis(s->sdl_joystick, 1) - 1;
-    s->in_state.sThumbRX = SDL_JoystickGetAxis(s->sdl_joystick, 3);
-    s->in_state.sThumbRY = -SDL_JoystickGetAxis(s->sdl_joystick, 4) - 1;
+    s->in_state.sThumbRY = SDL_JoystickGetAxis(s->sdl_joystick, 3);
+    s->in_state.sThumbRX = SDL_JoystickGetAxis(s->sdl_joystick, 4);
 
     /* Digital-Pad */
     if (SDL_JoystickGetHat(s->sdl_joystick, 0) & SDL_HAT_UP) {
@@ -427,7 +427,10 @@ static int usb_xbox_gamepad_initfn(USBDevice *dev)
         exit(1);
     }
 
-    const char* search_name = s->device_name;
+    /* HACK: Mingw sucks at parsing spaces in command line.
+     *       We'll hardcode this for now
+     */
+    const char* search_name = "Controller (XBOX 360 For Windows)";
     int search_index = s->device_index;
 
     if (search_name == NULL) {
