@@ -263,8 +263,8 @@ static void update_input(USBXIDState *s)
     /* Analog sticks */
     s->in_state.sThumbLX = SDL_JoystickGetAxis(s->sdl_joystick, 0);
     s->in_state.sThumbLY = -SDL_JoystickGetAxis(s->sdl_joystick, 1) - 1;
-    s->in_state.sThumbRX = SDL_JoystickGetAxis(s->sdl_joystick, 3);
-    s->in_state.sThumbRY = -SDL_JoystickGetAxis(s->sdl_joystick, 4) - 1;
+    s->in_state.sThumbRY = SDL_JoystickGetAxis(s->sdl_joystick, 3);
+    s->in_state.sThumbRX = SDL_JoystickGetAxis(s->sdl_joystick, 4);
 
     /* Digital-Pad */
     if (SDL_JoystickGetHat(s->sdl_joystick, 0) & SDL_HAT_UP) {
